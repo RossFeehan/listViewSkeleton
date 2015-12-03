@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -61,6 +62,15 @@ public class TeamNameListViewAdapter extends ArrayAdapter<String> {
 
          holder.teamNameTV.setText(teamNames.get(position));
          holder.teamBadgeIV.setImageDrawable(teamBadges.getDrawable(position));
+
+         //when the row is clicked
+         row.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View vRow) {
+                 TeamsHolder teamsHolder = (TeamsHolder)vRow.getTag();
+                 Toast.makeText(ctx, teamsHolder.teamNameTV.getText().toString(), Toast.LENGTH_SHORT).show();
+             }
+         });
          row.setTag(holder);
          return row;
      }
